@@ -2,8 +2,8 @@
   lib,
   appimageTools,
   makeWrapper,
-  version,
   pname,
+  version,
   src,
   extraInstallCommands,
   appImageContents ? null,
@@ -11,9 +11,9 @@
 }:
 appimageTools.wrapType2 (
   {
-    version = builtins.trace "${pname} version: ${version}" version;
     inherit
       pname
+      version
       src
       appImageContents
       extraInstallCommands
