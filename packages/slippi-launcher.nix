@@ -3,6 +3,7 @@
   appimageTools,
   makeWrapper,
   source,
+  libgpg-error,
 }:
 let
   pname = "slippi-launcher";
@@ -24,7 +25,9 @@ in
   extraInstallCommands = ''
     wrapProgram "$out/bin/${pname}" \
       --inherit-argv0 \
-      --set QT_QPA_PLATFORM xcb
+      --set QT_QPA_PLATFORM xcb \
+      --prefix LD_LIBRARY_PATH : ${libgpg-error}/lib
+
     mkdir -p "$out/share/applications"
     cp -r "${appImageContents}/$(readlink "${appImageContents}/slippi-launcher.png")" "$out/share/applications/"
     install -Dm644 "${appImageContents}/slippi-launcher.png" $out/share/icons/hicolor/512x512/apps/${pname}.png
